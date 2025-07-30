@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulzareen's To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-screen">
+        <div class="welcome-content">
+            <h1>Gulzareen's To-Do List</h1>
+            <div class="loading-animation">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <p>Organize your tasks efficiently</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="app-header">
+                <h1><i class="fas fa-check-circle"></i> Gulzareen's Tasks</h1>
+            </div>
+            
+            <div class="clock-container">
+                <div class="clock">
+                    <div class="hour-hand"></div>
+                    <div class="minute-hand"></div>
+                    <div class="second-hand"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="digital-time"></div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-section="all-tasks">
+                        <i class="fas fa-tasks"></i> All Tasks
+                    </li>
+                    <li data-section="deadline">
+                        <i class="fas fa-exclamation-circle"></i> Deadline Approaching
+                    </li>
+                    <li data-section="upcoming">
+                        <i class="fas fa-calendar-week"></i> Upcoming This Week
+                    </li>
+                    <li data-section="calendar">
+                        <i class="fas fa-calendar-alt"></i> Calendar
+                    </li>
+                    <li data-section="completed">
+                        <i class="fas fa-check-circle"></i> Completed
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="theme-toggle">
+                <span>Light Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Dark Mode</span>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <i class="fas fa-tasks"></i>
+                    <div>
+                        <h3 id="total-tasks">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <h3 id="completed-tasks">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-hourglass-half"></i>
+                    <div>
+                        <h3 id="pending-tasks">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Add Task Section -->
+            <div class="add-task">
+                <h2><i class="fas fa-plus-circle"></i> Add New Task</h2>
+                <div class="task-form">
+                    <div class="form-group">
+                        <input type="text" id="task-title" placeholder="Task title">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="task-description" placeholder="Description"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-date"><i class="far fa-calendar"></i> Due Date</label>
+                            <input type="date" id="task-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="task-time"><i class="far fa-clock"></i> Due Time</label>
+                            <input type="time" id="task-time">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-layer-group"></i> Category</label>
+                            <select id="task-category">
+                                <option value="work">Work</option>
+                                <option value="personal">Personal</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="health">Health</option>
+                                <option value="education">Education</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-bolt"></i> Priority</label>
+                            <select id="task-priority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="add-btn" id="add-task">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+
+            <!-- Task Sections -->
+            <div class="section active" id="all-tasks">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks"></i> All Tasks</h2>
+                    <div class="search-box">
+                        <input type="text" id="search-tasks" placeholder="Search tasks...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="tasks-list" id="all-tasks-container">
+                    <!-- All tasks will be displayed here -->
+                </div>
+            </div>
+
+            <div class="section" id="deadline">
+                <div class="section-header">
+                    <h2><i class="fas fa-exclamation-circle"></i> Deadline Approaching</h2>
+                </div>
+                <div class="tasks-list" id="deadline-container">
+                    <!-- Deadline tasks will be displayed here -->
+                </div>
+            </div>
+
+            <div class="section" id="upcoming">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-week"></i> Upcoming This Week</h2>
+                </div>
+                <div class="tasks-list" id="upcoming-container">
+                    <!-- Upcoming tasks will be displayed here -->
+                </div>
+            </div>
+
+            <div class="section" id="calendar">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Calendar</h2>
+                    <div class="calendar-nav">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="current-month">July 2023</h3>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Calendar dates will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="completed">
+                <div class="section-header">
+                    <h2><i class="fas fa-check-circle"></i> Completed Tasks</h2>
+                </div>
+                <div class="tasks-list" id="completed-container">
+                    <!-- Completed tasks will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
